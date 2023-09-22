@@ -5,7 +5,8 @@
         <meta charset="UTF-8" />
         <link href="style.css" rel="stylesheet" type="text/css" />
         <title>YouTube | Frostbyte Games</title>
-		<link rel="icon" src = "favicon.ico">
+		<link rel="icon" href = "favicon.ico">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     
     <body>
@@ -15,18 +16,18 @@
 				<img src = "Logo.png" style = "height: 48px; width: 48px; vertical-align: middle;"> FROSTBYTE GAMES</img>
 			</a>
 			<a href="javascript:void(0);" class="icon" onclick="toggleNavbar()">
-				<img src = "Menu.png"></img>
+				<i class = "fa fa-bars" style = "font-size: 48px; line-height: 48px;"></i>
 			</a>
 			<a style = "pointer-events: none;"></a>
 			<a href="https://frostbytegames1.github.io/youtube.html">
 				YouTube
 			</a>
-			<a href="https://frostbytegames1.github.io/mygames.html">
+			<a href="https://frostbytegames1.github.io/games.html">
 				My Games
 			</a>
 			<div class="dropdown">
 				<button class="dropbtn" style = "height: 68px; vertical-align: middle; line-height: 48px;">
-					Minecraft &#9207
+					Minecraft <i class = "fa fa-caret-down"></i>
 				</button>
 				<div class="dropdown-content">
 				  <a href="https://frostbytegames1.github.io/mcmods.html">Mods</a>
@@ -55,42 +56,68 @@
 		<br />
 		
 		<h2 style = "text-align: center;">
-			<span style = "font-weight: normal">&#10052 WELCOME TO THE OFFICIAL SITE OF &#10052</span>
-			<br />
-			<span style = "font-size: 52px;">FROSTBYTE GAMES</span>
+			<a href = "https://www.youtube.com/?channel-id=UCcl7ULJ7wTIAH9KksHDHUqw?sub_confirmation=1" target = "blank">
+				<span style = "font-weight: normal">
+					<i class = "fa fa-snowflake-o"></i> CLICK HERE TO SUBSCRIBE TO <i class = "fa fa-snowflake-o"></i>
+				</span>
+				<br />
+				<span style = "font-size: 52px;">FROSTBYTE GAMES</span>
+			</a>
 		</h2>
 		
 		<hr/>
 		
-		<div class = "infobox">
-			<strong>What's a Frostbyte?</strong>
-			<br/>
-			<br/>
-			That's me! Your friendly neighborhood computer science student and aspiring game developer.
-			This is my website, where all of my projects and links are available for you to discover and enjoy.
+		<div id = "videos" style = "display: block; margin: 0 auto; text-align: center;">
 		</div>
+		
+		<br />
+		<br />
+
+		<script>
+		// Replace 'RSS_FEED_URL' with the actual RSS feed URL of the YouTube channel
+		const rssFeedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCcl7ULJ7wTIAH9KksHDHUqw';
+
+		fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssFeedUrl))
+			.then(response => response.json())
+			.then(data => {
+				const videos = data.items;
+
+				// Create HTML to display each video
+				const videosContainer = document.getElementById('videos');
+				let videoHtml = '';
+				
+				var vidNum = 0;
+
+				videos.forEach(video => {
+					const title = video.title;
+					const link = video.link;
+					var date = new Date(video.pubDate);
+					
+					videoHtml += `
+						<div class = "videobox">
+							<a href = ${link} target = "blank";>${title}</a>
+							<br/>
+							<br/>
+							<iframe id = "videoframe" src="${link.replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen></iframe>
+							<p>${date.toLocaleDateString()}</p>
+						</div>
+					`;
+					
+				});
+
+				// Set the video HTML in the container
+				videosContainer.innerHTML = videoHtml;
+			})
+			.catch(error => {
+				console.error('Error fetching and displaying videos:', error);
+			});
+		</script>
 		
 		<br/>
-		
-		<div class = "infobox">
-			<strong>What can I do here?</strong>
-			<br/>
-			<br/>
-			On this site you'll find:
-			<ul>
-				<li>Minecraft Mods</li>
-				<li>Minecraft Resource Packs</li>
-				<li>Pok&eacutemon Fan Games & ROM Hacks</li>
-				<li>Original Games</li>
-			</ul>
-			and much more, all made by yours truly,
-			and all of which can be accessed using the menu at the top.
-		</div>
-		
 		<br/>
 		
 		<footer>
-			<p>&copy 2023 FrostbyteGames<br>
+			<p>&copy 2023 FrostbyteGames<br></p>
 		</footer>
 	
     </body>
