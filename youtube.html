@@ -72,27 +72,23 @@
 		
 		<br />
 		<br />
+		<br />
+		<br />
 
 		<script>
-		// Replace 'RSS_FEED_URL' with the actual RSS feed URL of the YouTube channel
 		const rssFeedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCcl7ULJ7wTIAH9KksHDHUqw';
 
 		fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssFeedUrl))
 			.then(response => response.json())
 			.then(data => {
 				const videos = data.items;
-
-				// Create HTML to display each video
 				const videosContainer = document.getElementById('videos');
 				let videoHtml = '';
-				
 				var vidNum = 0;
-
 				videos.forEach(video => {
 					const title = video.title;
 					const link = video.link;
 					var date = new Date(video.pubDate);
-					
 					videoHtml += `
 						<div class = "videobox">
 							<a href = ${link} target = "blank";>${title}</a>
@@ -102,10 +98,7 @@
 							<p>${date.toLocaleDateString()}</p>
 						</div>
 					`;
-					
 				});
-
-				// Set the video HTML in the container
 				videosContainer.innerHTML = videoHtml;
 			})
 			.catch(error => {

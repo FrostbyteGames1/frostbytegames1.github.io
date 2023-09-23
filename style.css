@@ -15,6 +15,7 @@ footer {
   right: 0;
   left: 0;
   bottom: 0;
+  z-index: 2;
 }
 
 hr {
@@ -26,6 +27,65 @@ hr {
 	padding: 20px;
 	background-color: white;
 	box-shadow: 5px 10px 18px #888888;
+}
+
+.modbox {
+	margin: 10px;
+	background-color: white;
+	box-shadow: 5px 10px 18px #888888;
+	display: inline-block;
+	text-align: center;
+	font-size: 15px;
+	font-family: inherit;
+	text-decoration: none;
+	height: 360px;
+	width: 440px;
+	border: none;
+	transition: transform .4s;
+	cursor: pointer;
+}
+
+.modbox a {
+	margin: 10px;
+	padding: 10px;
+	display: block;
+	top: 0;
+	left: 0;
+}
+
+.modbox:hover {
+	transform: scale(1.05);
+	z-index: 0;
+}
+
+.modicon {
+	height: 256px;
+	width: 256px;
+	display: block;
+	margin: auto;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: #242424aa;
+}
+
+.modal-content {
+	background-color: #ffffff;
+	margin: 108px 40px;
+	padding: 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	overflow-y: auto;
 }
 
 .videobox {
@@ -68,7 +128,8 @@ h2 a:hover {
 	background-color: #242424;
 	position: fixed;
 	top: 0;
-	width: 100%
+	width: 100%;
+	z-index: 2;
 }
 
 .navbar a {
@@ -119,7 +180,7 @@ h2 a:hover {
   background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 3;
 }
 
 .dropdown-content a {
